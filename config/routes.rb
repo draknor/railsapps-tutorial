@@ -6,10 +6,11 @@ RailsappsTutorial::Application.routes.draw do
     root :to => 'home#index'
   end
 
-  root :to => "home#index"
- 
-  devise_for :users
+  devise_scope :user do
+    root :to => "devise/registrations#new"
+  end
 
+  devise_for :users, :controllers => { :registrations => "registrations" }
   resources :users
 
   # The priority is based upon order of creation:
