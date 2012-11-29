@@ -3,7 +3,15 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 #// For fixed width containers
 jQuery ->
-  $('.datatable').dataTable({
-    "sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
+  $('#users').dataTable( {
+    "sDom": "<'row'<'span4'l><'span5'f>r>t<'row'<'span4'i><'span5'p>>", 
     "sPaginationType": "bootstrap"
-    });
+    "bProcessing": "true"
+    "bServerSide": "true"
+    "sAjaxSource": $('#users').data('source')
+  });
+
+#{
+#    "sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
+#    "sPaginationType": "bootstrap"
+#    });

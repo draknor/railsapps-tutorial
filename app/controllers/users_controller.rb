@@ -4,10 +4,15 @@ class UsersController < ApplicationController
 
 
   def index
-   @users = User.all
-   @chart = create_chart
-   @chart2 = create_chart2
-   end
+  #  @users = User.all
+    @chart = create_chart
+    @chart2 = create_chart2
+   
+    respond_to do |format|
+      format.html 
+      format.json { render json: UsersDatatable.new(view_context) } 
+    end
+  end
 
   def show
     @user = User.find(params[:id])

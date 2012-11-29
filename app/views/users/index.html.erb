@@ -20,8 +20,8 @@
 </div>
 
 
-<div class="span12">
-  <table class="datatable table table-bordered table-condensed">
+<div class="span9">
+  <table id="users" class="datatable table table-bordered table-condensed" data-source="<%= users_url(format: "json") %>">
     <thead>
       <tr>
           <th>Username</th>
@@ -33,19 +33,6 @@
       </tr>
     </thead>   
     <tbody>
-      <% @users.each do |user| %>
-      <tr>
-        <td><%= link_to user.name, user %></td>
-        <td><%= user.email %></td>
-        <td><%= user.created_at.to_date %></td>
-        <td><%= user.roles.first.name.titleize unless user.roles.first.nil? %></td>
-        <td>
-          <a data-toggle="modal" href="#role-options-<%= user.id %>" class="btn btn-mini" type="button">Change role</a>
-          <%= render user %>
-        </td>
-        <td><%= link_to("Delete user", user_path(user), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-mini') unless user == current_user %></td>                                       
-      </tr>
-      <% end %>
     </tbody>
   </table>
 </div>
