@@ -22,7 +22,9 @@ private
         link_to(user.name, user),
         user.email,
         user.created_at.to_date,
-        (user.roles.first.name.titleize unless user.roles.first.nil?)
+        (user.roles.first.name.titleize unless user.roles.first.nil?),
+        "change roles",
+        "delete"
       ]
     end
   end
