@@ -1,3 +1,19 @@
+<% content_for :head do %>
+  <%= javascript_include_tag 'http://www.google.com/jsapi' %>
+<% end %>
+
+
+<h3>Users by Day</h3>
+<div id="chart" style="width: 700px; height: 240px">
+  <%= render_chart @chart, 'chart' %>
+</div>
+
+<h3>Users - Cumulative</h3>
+<div id="chart2" style="width: 700px; height: 240px">
+  <%= render_chart @chart2, 'chart2' %>
+</div>
+
+
 <h3>Users</h3>
 <div class="span8">
 <table class="table table-condensed">
