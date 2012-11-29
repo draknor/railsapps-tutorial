@@ -3,21 +3,26 @@
 <% end %>
 
 
-<h3>Users by Day</h3>
-<div id="chart" style="width: 700px; height: 240px">
-  <%= render_chart @chart, 'chart' %>
+<h3>Users Dashboard</h3>
+
+<div class="span9">
+  <div id="chart" style="width: 700px; height: 240px">
+    <%= render_chart @chart, 'chart' %>
+  </div>
+  <br>
 </div>
 
-<h3>Users - Cumulative</h3>
-<div id="chart2" style="width: 700px; height: 240px">
-  <%= render_chart @chart2, 'chart2' %>
+<div class="span9">
+  <div id="chart2" style="width: 700px; height: 240px">
+    <%= render_chart @chart2, 'chart2' %>
+  </div>
+  <br>
 </div>
 
 
-<h3>Users</h3>
-<div class="span8">
-<table class="table table-condensed">
-	  <thead>
+<div class="span12">
+  <table class="datatable table table-bordered table-condensed">
+    <thead>
       <tr>
           <th>Username</th>
           <th>Email</th>
@@ -26,10 +31,10 @@
           <th></th>
           <th></th>                                      
       </tr>
-  </thead>   
-  <tbody>
-  <% @users.each do |user| %>
-    <tr>
+    </thead>   
+    <tbody>
+      <% @users.each do |user| %>
+      <tr>
         <td><%= link_to user.name, user %></td>
         <td><%= user.email %></td>
         <td><%= user.created_at.to_date %></td>
@@ -39,9 +44,9 @@
           <%= render user %>
         </td>
         <td><%= link_to("Delete user", user_path(user), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-mini') unless user == current_user %></td>                                       
-    </tr>
-  <% end %>
-  </tbody>
-</table>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
 
