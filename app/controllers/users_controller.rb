@@ -33,7 +33,7 @@ class UsersController < ApplicationController
 private
 
   def only_allow_admin  # could move this to ApplicationController so it's available in multiple controllers
-    redirect_to root_path, :alert => 'Not authorized as admin.' unless current_user.has_role? :admin
+    redirect_to root_path, :alert => 'Not authorized as an administrator.' unless current_user.has_role? :admin
   end
 
 end
