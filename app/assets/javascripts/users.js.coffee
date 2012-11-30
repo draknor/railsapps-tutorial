@@ -4,6 +4,6 @@
 #// For fixed width containers
 jQuery ->
   $('.datatable').dataTable({
-    "sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
+    "sDom": "<'row'<'span4'l><'span5'f>r>t<'row'<'span4'i><'span5'p>>",
     "sPaginationType": "bootstrap"
     });

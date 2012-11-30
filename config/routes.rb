@@ -8,10 +8,14 @@ RailsappsTutorial::Application.routes.draw do
 
   devise_scope :user do
     root :to => "devise/registrations#new"
+    match '/user/confirmation/' => 'confirmations#update', :via => :put, :as => :update_user_confirmation
   end
 
   devise_for :users, :controllers => { :registrations => "registrations" }
-  resources :users
+  match 'users/bulk_invite/:quantity' => 'users#bulk_invite', :via => :get, :as => :bulk_invite
+  resources :users do
+    get 'invite', :on => :member
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

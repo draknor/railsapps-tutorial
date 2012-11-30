@@ -14,7 +14,7 @@ RailsappsTutorial::Application.configure do
   config.action_controller.perform_caching = false
 
   # ActionMailer Config
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.default_url_options = { :host => '192.168.0.190:3000' }
   config.action_mailer.delivery_method = :smtp
   # change to false to prevent email from being sent during development
   config.action_mailer.perform_deliveries = true
@@ -26,6 +26,7 @@ RailsappsTutorial::Application.configure do
     domain: "habitbuild.com",
     authentication: "plain",
     enable_starttls_auto: true,
+    openssl_verify_mode: 'none',
     user_name: ENV["HABITBUILD_EMAIL_USERNAME"],
     password: ENV["HABITBUILD_EMAIL_PASSWORD"]
   }

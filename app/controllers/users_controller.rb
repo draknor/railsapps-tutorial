@@ -1,18 +1,32 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :only_allow_admin, :only => [ :index, :update, :destroy ]  # uses Rolify gem
+  before_filter :only_allow_admin, :only => [ :index, :update, :destroy, :invite, :bulk_invite ]  # uses Rolify gem
 
 
   def index
-   @users = User.all
-   @chart = create_chart
-   @chart2 = create_chart2
-   end
+    @users = User.all
+    @chart = create_chart
+    @chart2 = create_chart2
+  end
 
   def show
     @user = User.find(params[:id])
   end
 
+  def invite
+    @user = User.find(params[:id])
+    @user.send_confirmation_instructions
+    redirect_to :back, :only_path => true, :notice => "Sent invitation to #{@user.email}."
+  end
+ 
+  def bulk_invite
+    users = User.where(:confirmation_token => nil).order(:created_at).limit(params[:quantity])
+    users.each do |user|
+      user.send_confirmation_instructions
+    end
+    redirect_to :back, :only_path => true, :notice => "Sent invitation to #{users.count} users."
+  end
+ 
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(params[:user], :as => :admin)
